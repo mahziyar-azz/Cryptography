@@ -1,97 +1,139 @@
-Crypto Toolbox 🛠️
-A modern and intuitive web-based utility for all your basic cryptographic needs. This Flask-powered application provides a clean interface for encoding/decoding, hashing, and encrypting/decrypting data on the fly.
+# 🛠️ Crypto Toolbox
 
-Live Demo: [Link to your live demo if you deploy it]
+A modern and intuitive **web-based utility** for all your basic cryptographic needs. This Flask-powered application provides a clean interface for encoding/decoding, hashing, and encrypting/decrypting data on the fly.
 
-Features
-Base64 Encoding/Decoding: Quickly convert text to and from Base64 format.
+**🔗 Live Demo**: [Live Demo Link](#) <!-- Update this when deployed -->
 
-Hashing: Generate hashes using multiple popular algorithms, including SHA-256, SHA-512, SHA-1, and MD5.
+---
 
-AES-256 Encryption/Decryption: Securely encrypt and decrypt your sensitive data using the robust AES-256 standard.
+## ✨ Features
 
-Modern UI: A clean, responsive, and animated user interface.
+- **Base64 Encoding/Decoding**  
+  Quickly convert text to and from Base64 format.
 
-Light & Dark Modes: Seamlessly switch between light and dark themes for your comfort. The theme preference is saved locally.
+- **Hashing**  
+  Generate hashes using popular algorithms:  
+  `SHA-256`, `SHA-512`, `SHA-1`, and `MD5`.
 
-Copy to Clipboard: Easily copy the output with a single click.
+- **AES-256 Encryption/Decryption**  
+  Secure sensitive data using the robust AES-256 standard.
 
-Auto-Clear Fields: Input/output boxes clear automatically when switching between modes (e.g., Encode ↔ Decode) for a smoother workflow.
+- **Modern UI**  
+  Clean, responsive design with smooth animations.
 
-Tech Stack
-Backend: Python (Flask)
+- **Light & Dark Modes**  
+  Toggle themes with preferences saved locally.
 
-Frontend: HTML, CSS, JavaScript
+- **Copy to Clipboard**  
+  Easily copy output with a single click.
 
-Cryptography: pycryptodome library
+- **Auto-Clear Fields**  
+  Inputs and outputs reset when switching modes for better flow.
 
-Installation & Setup
-To get a local copy up and running, follow these simple steps.
+---
 
-Prerequisites
-Make sure you have Python 3 and pip installed on your system.
+## 🧰 Tech Stack
 
-Steps
-Clone the repository:
+| Layer     | Technology         |
+|-----------|--------------------|
+| Backend   | Python (Flask)     |
+| Frontend  | HTML, CSS, JavaScript |
+| Security  | pycryptodome       |
 
-git clone [https://github.com/mahziyar-azz/Cryptography.git](https://github.com/mahziyar-azz/Cryptography.git)
-cd Cryptography
+---
 
-Create and activate a virtual environment (recommended):
+## 🧪 Installation & Setup
 
-Windows:
+### ✅ Prerequisites
+Make sure you have:
+- Python 3 installed  
+- `pip` package manager  
 
-python -m venv venv
-.\venv\Scripts\activate
+### 🚀 Steps
 
-macOS / Linux:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/mahziyar-azz/Cryptography.git
+   cd Cryptography
+   ```
 
-python3 -m venv venv
-source venv/bin/activate
+2. **Create and activate a virtual environment**
 
-Install the required packages:
+   **Windows**
+   ```bash
+   python -m venv venv
+   .\venv\Scripts\activate
+   ```
 
-pip install -r requirements.txt
+   **macOS / Linux**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
 
-(Note: You will need to create a requirements.txt file. See the section below.)
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Usage
-Run the Flask application:
+---
 
+## 🖥️ Usage
+
+Start the Flask app:
+
+```bash
 python app.py
+```
 
-Open your browser and navigate to:
-
+Visit your browser at:  
 [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-Now you can use the application directly in your browser!
+---
 
-Creating requirements.txt
-To make your project easily installable for others, create a requirements.txt file. You can generate it by running this command in your activated virtual environment:
+## 📦 Creating `requirements.txt`
 
+Generate the file inside your active virtual environment:
+```bash
 pip freeze > requirements.txt
+```
 
-This will create a file listing all the necessary Python packages (Flask and pycryptodome).
+Includes essentials like:
+- Flask  
+- pycryptodome  
 
-Contributing
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+---
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+## 🤝 Contributing
 
-Fork the Project
+Got ideas to improve this? Pull requests are welcome! Here's how:
 
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
+```bash
+# Fork the repo and create your branch
+git checkout -b feature/AmazingFeature
 
-Commit your Changes (git commit -m 'Add some AmazingFeature')
+# Commit and push your changes
+git commit -m 'Add AmazingFeature'
+git push origin feature/AmazingFeature
+```
 
-Push to the Branch (git push origin feature/AmazingFeature)
+Then, open a Pull Request!
 
-Open a Pull Request
+Or, submit issues tagged `"enhancement"`.
 
-License
-Distributed under the MIT License. See LICENSE for more information.
+---
 
-Contact
-Mahziyar Azz - [Your Email or Social Media Link]
+## 📄 License
 
-Project Link: https://github.com/mahziyar-azz/Cryptography
+Distributed under the [MIT License](LICENSE).
+
+---
+
+## 📬 Contact
+
+**Mahziyar Azz**  
+Project Repo: [https://github.com/mahziyar-azz/Cryptography](https://github.com/mahziyar-azz/Cryptography)  
+mahziyar.azimzadeh@gmail.com
+
+
+Would you like a matching GitHub issue or project board template to help organize feedback and features? Or I can help you deploy it live! 🚀
