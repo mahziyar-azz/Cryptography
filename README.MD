@@ -136,4 +136,8 @@ Project Repo: [https://github.com/mahziyar-azz/Cryptography](https://github.com/
 mahziyar.azimzadeh@gmail.com
 
 
+<<<<<<< HEAD
 Would you like a matching GitHub issue or project board template to help organize feedback and features? Or I can help you deploy it live! 🚀
+=======
+Would you like a matching GitHub issue or project board template to help organize feedback and features? Or I can help you deploy it live! 🚀
+>>>>>>> 72b4efedc4c9d20a28db52b3a76b4436af2c2eb7
