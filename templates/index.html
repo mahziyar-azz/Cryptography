@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Toolbox</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="page-header">
+            <div class="title-container">
+                <h1>Crypto Toolbox 🛠️</h1>
+                <p>A simple tool for encoding, hashing, and encrypting data</p>
+            </div>
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-link active" onclick="openTab(event, 'base64')">En/Decoding</button>
+            <button class="tab-link" onclick="openTab(event, 'hashing')">Hashing</button>
+            <button class="tab-link" onclick="openTab(event, 'encryption')">En/Decryption</button>
+        </div>
+
+        <div id="base64" class="tab-content active">
+            <h2>Base64 En/Decoding</h2>
+            <form id="base64-form">
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="base64-action" value="encode" checked>
+                        <span>Encode</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="base64-action" value="decode">
+                        <span>Decode</span>
+                    </label>
+                </div>
+                <textarea id="base64-input" class="input-box" placeholder="Enter text here..."></textarea>
+                <button type="submit" class="convert-btn">Convert</button>
+                <textarea id="base64-output" class="output-box" placeholder="Output..." readonly></textarea>
+                <button type="button" class="copy-btn" onclick="copyOutput('base64-output')">Copy Output</button>
+            </form>
+        </div>
+
+        <div id="hashing" class="tab-content">
+            <h2>Hashing</h2>
+            <form id="hashing-form">
+                <div class="radio-group">
+                    <label><input type="radio" name="hash-algo" value="sha256" checked><span>SHA-256</span></label>
+                    <label><input type="radio" name="hash-algo" value="md5"><span>MD5</span></label>
+                    <label><input type="radio" name="hash-algo" value="sha1"><span>SHA-1</span></label>
+                    <label><input type="radio" name="hash-algo" value="sha512"><span>SHA-512</span></label>
+                </div>
+                <textarea id="hashing-input" class="input-box" placeholder="Enter text here..."></textarea>
+                <button type="submit" class="convert-btn">Convert</button>
+                <textarea id="hashing-output" class="output-box" placeholder="Output..." readonly></textarea>
+                <button type="button" class="copy-btn" onclick="copyOutput('hashing-output')">Copy Output</button>
+            </form>
+        </div>
+
+        <div id="encryption" class="tab-content">
+            <h2>AES-256 En/Decryption</h2>
+            <form id="encryption-form">
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="aes-action" value="encrypt" checked>
+                        <span>Encrypt</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="aes-action" value="decrypt">
+                        <span>Decrypt</span>
+                    </label>
+                </div>
+                <input type="password" id="aes-key" class="input-box key-input" placeholder="Enter secret key...">
+                <textarea id="encryption-input" class="input-box" placeholder="Enter text here..."></textarea>
+                <button type="submit" class="convert-btn">Convert</button>
+                <textarea id="encryption-output" class="output-box" placeholder="Output..." readonly></textarea>
+                <button type="button" class="copy-btn" onclick="copyOutput('encryption-output')">Copy Output</button>
+            </form>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
