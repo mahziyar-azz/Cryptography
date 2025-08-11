@@ -1,4 +1,3 @@
-// Function to switch between tabs
 function openTab(evt, tabName) {
     let i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
@@ -15,17 +14,13 @@ function openTab(evt, tabName) {
     evt.currentTarget.classList.add("active");
 }
 
-// Function to copy text from an element to the clipboard
 function copyOutput(elementId) {
     const outputElement = document.getElementById(elementId);
     outputElement.select();
     document.execCommand("copy");
-    // You might want to add a user feedback here, like a tooltip
 }
 
-// --- Form Submission Handlers ---
 
-// Event listener for the Base64 form
 document.getElementById('base64-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const text = document.getElementById('base64-input').value;
@@ -46,7 +41,6 @@ document.getElementById('base64-form').addEventListener('submit', function(e) {
     });
 });
 
-// Event listener for the Hashing form
 document.getElementById('hashing-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const text = document.getElementById('hashing-input').value;
@@ -67,7 +61,6 @@ document.getElementById('hashing-form').addEventListener('submit', function(e) {
     });
 });
 
-// Event listener for the Encryption form
 document.getElementById('encryption-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const text = document.getElementById('encryption-input').value;
@@ -90,15 +83,12 @@ document.getElementById('encryption-form').addEventListener('submit', function(e
 });
 
 
-// --- New Enhancement Functions ---
 
-// Function to clear input/output fields
 function clearFields(inputId, outputId) {
     document.getElementById(inputId).value = '';
     document.getElementById(outputId).value = '';
 }
 
-// Add event listeners to radio buttons to auto-clear fields
 document.querySelectorAll('input[name="base64-action"]').forEach(radio => {
     radio.addEventListener('change', () => clearFields('base64-input', 'base64-output'));
 });
@@ -107,12 +97,9 @@ document.querySelectorAll('input[name="aes-action"]').forEach(radio => {
     radio.addEventListener('change', () => clearFields('encryption-input', 'encryption-output'));
 });
 
-
-// Dark/Light Mode Toggle
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
-// Function to apply the saved theme on load
 function applyTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -123,6 +110,8 @@ function applyTheme() {
         themeToggle.textContent = '🌙';
     }
 }
+
+
 
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
@@ -136,11 +125,59 @@ themeToggle.addEventListener('click', () => {
 });
 
 
+
+
+
+function setupRadioIconToggle(radioGroupName, iconMap) {
+    const radios = document.querySelectorAll(`input[name="${radioGroupName}"]`);
+    
+    radios.forEach(radio => {
+        radio.addEventListener('change', (event) => {
+
+            const selectedRadio = event.target;
+            const icon = selectedRadio.parentElement.querySelector('i');
+            
+
+            const iconName = iconMap[selectedRadio.value];
+            if (icon && iconName) {
+                icon.setAttribute('data-lucide', iconName);
+                
+
+                radios.forEach(otherRadio => {
+                    if (otherRadio !== selectedRadio) {
+                        const otherIcon = otherRadio.parentElement.querySelector('i');
+                        const otherIconName = iconMap[otherRadio.value];
+                        if (otherIcon && otherIconName) {
+                            otherIcon.setAttribute('data-lucide', otherIconName);
+                        }
+                    }
+                });
+                lucide.createIcons();
+            }
+        });
+    });
+}
 // --- Initial Setup on Page Load ---
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Set the default tab to be active
+
     document.querySelector('.tab-link').click();
-    // Apply the saved theme
+
     applyTheme();
+
+    lucide.createIcons()
+
+
+
+
+    
+    setupRadioIconToggle('base64-action', {
+        'encode': 'package',
+        'decode': 'package-open'
+    });
+
+    setupRadioIconToggle('aes-action', {
+        'encrypt': 'lock',
+        'decrypt': 'lock-open'
+    });
 });
