@@ -315,3 +315,37 @@ label span:before {
     background-color: color-mix(in srgb, var(--md-sys-color-on-secondary) 10%, var(--md-sys-color-secondary));
     transform: translateY(-2px);
 }
+.subtabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  margin: 0 0 16px 0;
+}
+
+.subtab-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 14px;            /* smaller than .tab-link (18px) */
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface-variant);
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+.subtab-link.active {
+  color: var(--md-sys-color-primary);
+  border-bottom-color: var(--md-sys-color-primary);
+}
+
+.subtab-content {
+  display: none;
+  animation: slideIn 0.35s forwards;
+}
+
+.subtab-content.active {
+  display: block;
+}

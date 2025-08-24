@@ -75,25 +75,70 @@
         </div>
 
         <div id="encryption" class="tab-content">
-            <h2>AES-256 En/Decryption</h2>
-            <form id="encryption-form">
+            <h2>En/Decryption</h2>
+          
+            <!-- mini tabs row (slightly smaller than main tabs) -->
+            <div class="subtabs">
+              <button class="subtab-link active" onclick="openSubTab(event, 'aesrsa')">
+                <i data-lucide="key"></i><span>AES‑RSA</span>
+              </button>
+              <button class="subtab-link" onclick="openSubTab(event, 'aes256')">
+                <i data-lucide="lock"></i><span>AES‑256</span>
+              </button>
+            </div>
+          
+            <!-- AES‑RSA subtab -->
+            <div id="aesrsa" class="subtab-content active">
+              <form id="aesrsa-form">
+                <!-- keep radio styling/animation exactly the same pattern -->
                 <div class="radio-group">
-                    <label>
-                        <input type="radio" name="aes-action" value="encrypt" checked>
-                        <span><i data-lucide="lock"></i>Encrypt</span>
-                    </label>
-                    <label>
-                        <input type="radio" name="aes-action" value="decrypt">
-                        <span><i data-lucide="lock-open"></i>Decrypt</span>
-                    </label>
+                  <label>
+                    <input type="radio" name="aesrsa-action" value="encrypt" checked>
+                    <span><i data-lucide="lock"></i>Encrypt</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="aesrsa-action" value="decrypt">
+                    <span><i data-lucide="lock-open"></i>Decrypt</span>
+                  </label>
                 </div>
+
+                <!-- placeholder key inputs (UI only for now) -->
+                <textarea class="input-box key-input" id="rsa-public" placeholder="RSA Public Key (PEM) — for Encrypt"></textarea>
+                <textarea class="input-box key-input" id="rsa-private" placeholder="RSA Private Key (PEM) — for Decrypt"></textarea>
+
+                <textarea id="aesrsa-input" class="input-box" placeholder="Enter text here..."></textarea>
+                <!-- disabled until backend route/type exists -->
+                <button type="submit" class="convert-btn" disabled title="AES‑RSA wiring pending backend">
+                  Convert
+                </button>
+                <textarea id="aesrsa-output" class="output-box" placeholder="Output..." readonly></textarea>
+                <button type="button" class="copy-btn" onclick="copyOutput('aesrsa-output')">Copy Output</button>
+              </form>
+            </div>
+          
+            <!-- AES‑256 subtab (your existing form moved here, untouched in spirit) -->
+            <div id="aes256" class="subtab-content">
+              <form id="encryption-form">
+                <div class="radio-group">
+                  <label>
+                    <input type="radio" name="aes256-action" value="encrypt" checked>
+                    <span><i data-lucide="lock"></i>Encrypt</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="aes256-action" value="decrypt">
+                    <span><i data-lucide="lock-open"></i>Decrypt</span>
+                  </label>
+                </div>
+          
                 <input type="password" id="aes-key" class="input-box key-input" placeholder="Enter secret key...">
                 <textarea id="encryption-input" class="input-box" placeholder="Enter text here..."></textarea>
                 <button type="submit" class="convert-btn">Convert</button>
                 <textarea id="encryption-output" class="output-box" placeholder="Output..." readonly></textarea>
                 <button type="button" class="copy-btn" onclick="copyOutput('encryption-output')">Copy Output</button>
-            </form>
-        </div>
+              </form>
+            </div>
+          </div>
+          
     </div>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>

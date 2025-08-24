@@ -13,6 +13,23 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).classList.add("active");
     evt.currentTarget.classList.add("active");
 }
+function openSubTab(evt, subTabId) {
+    const container = document.getElementById('encryption'); // scope to encryption tab
+    const contents = container.getElementsByClassName('subtab-content');
+    const links = container.getElementsByClassName('subtab-link');
+
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].classList.remove('active');
+        contents[i].style.display = 'none';
+    }
+    for (let j = 0; j < links.length; j++) {
+        links[j].classList.remove('active');
+    }
+    document.getElementById(subTabId).style.display = 'block';
+    document.getElementById(subTabId).classList.add('active');
+    evt.currentTarget.classList.add('active');
+}
+
 
 function copyOutput(elementId) {
     const outputElement = document.getElementById(elementId);
@@ -64,7 +81,7 @@ document.getElementById('hashing-form').addEventListener('submit', function(e) {
 document.getElementById('encryption-form').addEventListener('submit', function(e) {
     e.preventDefault();
     const text = document.getElementById('encryption-input').value;
-    const action = document.querySelector('input[name="aes-action"]:checked').value;
+    const action = document.querySelector('input[name="aes256-action"]:checked').value;
     const key = document.getElementById('aes-key').value;
 
     fetch('/convert', {
@@ -82,6 +99,25 @@ document.getElementById('encryption-form').addEventListener('submit', function(e
     });
 });
 
+// AES-RSA subtab handler (enable your "Convert" button)
+document.getElementById('aesrsa-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const text = document.getElementById('aesrsa-input').value;
+    const action = document.querySelector('input[name="aesrsa-action"]:checked').value;
+    const public_key = document.getElementById('rsa-public').value || null;
+    const private_key = document.getElementById('rsa-private').value || null;
+
+    fetch('/convert', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'aes_rsa', text, action, public_key, private_key })
+    })
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById('aesrsa-output').value = data.error ? `Error: ${data.error}` : data.result;
+    });
+  });
+  
 
 
 function clearFields(inputId, outputId) {
@@ -89,12 +125,12 @@ function clearFields(inputId, outputId) {
     document.getElementById(outputId).value = '';
 }
 
-document.querySelectorAll('input[name="base64-action"]').forEach(radio => {
-    radio.addEventListener('change', () => clearFields('base64-input', 'base64-output'));
+document.querySelectorAll('input[name="aes256-action"]').forEach(radio => {
+    radio.addEventListener('change', () => clearFields('encryption-input', 'encryption-output'));
 });
 
-document.querySelectorAll('input[name="aes-action"]').forEach(radio => {
-    radio.addEventListener('change', () => clearFields('encryption-input', 'encryption-output'));
+document.querySelectorAll('input[name="aesrsa-action"]').forEach(radio => {
+    radio.addEventListener('change', () => clearFields('aesrsa-input', 'aesrsa-output'));
 });
 
 const themeToggle = document.getElementById('theme-toggle');
@@ -176,8 +212,13 @@ document.addEventListener('DOMContentLoaded', () => {
         'decode': 'package-open'
     });
 
-    setupRadioIconToggle('aes-action', {
+    setupRadioIconToggle('aes256-action', { 
+        'encrypt': 'lock',
+        'decrypt': 'lock-open' 
+        });
+    setupRadioIconToggle('aesrsa-action', {
         'encrypt': 'lock',
         'decrypt': 'lock-open'
     });
+    
 });
